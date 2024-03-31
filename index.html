@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,32 +8,102 @@
     <link href="style.css" rel="stylesheet">
     
 </head>
-<body>
+
+<body style="background-color: rgba(73, 183, 146, 0.44); ">
 
     <header>
         <div class="navbar">
             <a href="index.html">Home</a>
             <a href="accounting.html">Accounting</a>
-          </div>           
-        </nav>
+        </div>
     </header>
-    <main>
+   
+    <main style="margin-top: 40px; ">
+      
+            <form id="empData">
+                <center>
+                    <fieldset>
+        
+                        <legend>Employees
+                            Informations </legend>
+        
+                        <label for="name">Full Name :</label>
+                        <br>
+                        <input type="text" name="name" id="name" style="margin-top: 8px; margin-bottom: 10px;"
+                            placeholder="Enter Your Name">
+                        <br>
+                        <label for="department" style="margin-top: 8px;">Department :</label>
+                        <br>
+                        <select id="department" name="department" style="margin-top: 8px;margin-bottom: 10px;">
+        
+                            <option>Select Your Department </option>
+                            <option value="Administration">Administration</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Development">Development</option>
+                            <option value="Finance">Finance</option>
+        
+                        </select>
+        
+                        <br>
+                        <label for="level">Level :</label>
+                        <br>
+                        <select id="level" name="level" style="margin-top: 8px;margin-bottom: 10px;">
+        
+                            <option>Select Your Level </option>
+                            <option value="Junior">Junior</option>
+                            <option value="Mid-Senior">Mid-Senior</option>
+                            <option value="Senior">Senior</option>
+        
+                        </select>
+                        <br>
+                        <label for="img">Photo :</label>
+                        <br>
+                        <input type="text" name="img" id="img" style="margin-top: 8px; margin-bottom: 10px;"
+                            placeholder="Add Your Photo">
+                        <br>
+                        <center> <input type="button" value="Add" id="addEmployee"
+                                style="margin-top: 8px; margin-bottom: 10px; height: 25px;width: 48px;"></center>
+                        <br>
+        
+                    </fieldset>
+                </center>
+            </form>
+            
+        <h1>Administration</h1>
+        <section id="administrationDep">
+            
+        </section>
+        <h1>Marketing</h1>
+        <section id="marketingDep">
+            
 
+        </section>
+        <h1>Development</h1>
+        <section id="developmentDep">
+            
 
+        </section>
+        <h1>Finance</h1>
+        <section id="financeDep">
+           
+        </section>
 
-       <p> </p>
+        <p> </p>
 
 
 
 
 
     </main>
-    <footer>
-        <p style="font-size: 30px;">
-           <a href="https://facebook.com%22%3Efacebook/">Facebook  </a>         
-            <a href="https://linkedin.com%22%3Elinkedin/">   LinkdIn   </a><br>
-            Copyright  &copy; 2024 All Rights Reserved.</p> 
+    <footer >
+       
+            <a href="https://facebook.com%22%3Efacebook/">Facebook </a>
+            <a href="https://linkedin.com%22%3Elinkedin/" > LinkdIn </a><br>
+            <p>Copyright &copy; 2024 All Rights Reserved.</p>
+     
     </footer>
+    
 </body>
 <script src="app.js"></script>
+
 </html>
