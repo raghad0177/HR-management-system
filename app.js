@@ -43,15 +43,18 @@ employee.prototype.render = function () {
     section.appendChild(div1); 
     let img1 = document.createElement('img');
     img1.setAttribute('src', this.ImageURL);
-    img1.width = "150";
-    img1.height = "150";
+   
     div1.append(img1);
     let div2 = document.createElement('div');
     div2.classList.add('container'); 
     div1.append(div2);
     let h41 = document.createElement('h3');
+    
     div2.append(h41);
-    h41.textContent = "Name : " + this.FullName + " ID :" + this.EmployeeID;
+    h41.textContent = "ID :" + this.EmployeeID;
+    let h42 = document.createElement('h3');
+    div2.append(h42);
+    h42.textContent = "Name :" + this.FullName;
     let h31 = document.createElement('h4');
     div2.append(h31);
     h31.textContent = "Department : " + this.Department;
