@@ -80,11 +80,11 @@ let emp7 = new employee("Hadi Ahmad", "Finance", "Mid-Senior", "assets/Hadi.jpg"
 
 let empForm = document.getElementById("addEmployee");
 empForm.addEventListener('click', addNewEmployee);
-let click = 1;
+let click = 0;
 
 function addNewEmployee(event) {
     event.preventDefault();
-    click++;
+    
     let name = document.getElementById('name').value;
     let department = document.getElementById('department').value;
     let level = document.getElementById('level').value;
