@@ -1,39 +1,21 @@
-let staticEmployees = [
-    { FullName: "Ghazi Samer", Department: "Administration", Level: "Senior", ImageURL: "assets/Ghazi.jpg" },
-    { FullName: "Lana Ali", Department: "Finance", Level: "Senior", ImageURL: "assets/Lana.jpg" },
-    { FullName: "Tamara Ayoub", Department: "Marketing", Level: "Senior", ImageURL: "assets/Tamara.jpg" },
-    { FullName: "Safi Walid", Department: "Administration", Level: "Mid-Senior", ImageURL: "assets/Safi.jpg" },
-    { FullName: "Omar Zaid", Department: "Development", Level: "Senior", ImageURL: "assets/Omar.jpg" },
-    { FullName: "Rana Saleh", Department: "Development", Level: "Junior", ImageURL: "assets/Rana.jpg" },
-    { FullName: "Hadi Ahmad", Department: "Finance", Level: "Mid-Senior", ImageURL: "assets/Hadi.jpg" }
-];
-
-// Store the static employee data in local storage
-staticEmployees.forEach((emp, index) => {
-    let key = "staticEmployee" + (index + 1);
-    localStorage.setItem(key + "_Name", emp.FullName);
-    localStorage.setItem(key + "_Department", emp.Department);
-    localStorage.setItem(key + "_Level", emp.Level);
-    localStorage.setItem(key + "_ImageURL", emp.ImageURL);
-});
-
-// Retrieve the total number of static employees
-let totalStaticEmployees = staticEmployees.length;
-
-// Define the employee constructor function
+// Define the Employee constructor function
 function Employee(FullName, Department, Level, ImageURL) {
+    // Ensure employeeId is defined before calling it
     this.EmployeeID = this.employeeId();
     this.FullName = FullName;
     this.Department = Department;
     this.Level = Level;
     this.ImageURL = ImageURL;
+    // Calculate the salary based on the level
     this.Salary = this.CalcSalary(Level);
 }
 
+// Define the employeeId method
 Employee.prototype.employeeId = function () {
     return Math.floor(Math.random() * (9999 - 1000 + 1) + 1000);
 }
 
+// Define the CalcSalary method
 Employee.prototype.CalcSalary = function (Level) {
     let salary;
     let netSalary;
@@ -50,6 +32,37 @@ Employee.prototype.CalcSalary = function (Level) {
     return netSalary;
 }
 
+// Static employees data
+let staticEmployees = [
+    { FullName: "Ghazi Samer", Department: "Administration", Level: "Senior", ImageURL: "assets/Ghazi.jpg", EmployeeID: 0 },
+    { FullName: "Lana Ali", Department: "Finance", Level: "Senior", ImageURL: "assets/Lana.jpg", EmployeeID: 0 },
+    { FullName: "Tamara Ayoub", Department: "Marketing", Level: "Senior", ImageURL: "assets/Tamara.jpg", EmployeeID: 0 },
+    { FullName: "Safi Walid", Department: "Administration", Level: "Mid-Senior", ImageURL: "assets/Safi.jpg", EmployeeID: 0 },
+    { FullName: "Omar Zaid", Department: "Development", Level: "Senior", ImageURL: "assets/Omar.jpg", EmployeeID: 0 },
+    { FullName: "Rana Saleh", Department: "Development", Level: "Junior", ImageURL: "assets/Rana.jpg", EmployeeID: 0 },
+    { FullName: "Hadi Ahmad", Department: "Finance", Level: "Mid-Senior", ImageURL: "assets/Hadi.jpg", EmployeeID: 0 }
+];
+
+// Calculate and set salary for each static employee
+staticEmployees.forEach((emp, index) => {
+    emp.Salary = new Employee(emp.FullName, emp.Department, emp.Level, emp.ImageURL).Salary;
+});
+
+// Store static employee data in local storage
+staticEmployees.forEach((emp, index) => {
+    let key = "staticEmployee" + (index + 1);
+    localStorage.setItem(key + "_Name", emp.FullName);
+    localStorage.setItem(key + "_Department", emp.Department);
+    localStorage.setItem(key + "_Level", emp.Level);
+    localStorage.setItem(key + "_ImageURL", emp.ImageURL);
+    localStorage.setItem(key + "_Salary", emp.Salary); // Add salary to local storage
+    localStorage.setItem(key + "_ID", emp.EmployeeID);
+});
+
+// Retrieve the total number of static employees
+let totalStaticEmployees = staticEmployees.length;
+
+// Define the render method for Employee
 Employee.prototype.render = function () {
     let section;
     if (this.Department === "Administration") {
@@ -87,6 +100,7 @@ Employee.prototype.render = function () {
     h33.textContent = "Salary: " + this.Salary;
 }
 
+// Define the saveData method for Employee
 Employee.prototype.saveData = function(){
     click++;
     localStorage.setItem("eID" + click, this.EmployeeID);
@@ -98,11 +112,14 @@ Employee.prototype.saveData = function(){
     localStorage.setItem("totalEmployees", click); // Update totalEmployees value
 }
 
+// Event listener for adding new employees
 let empForm = document.getElementById("addEmployee");
 empForm.addEventListener('click', addNewEmployee);
 
+// Initialize the total employees counter
 let click = parseInt(localStorage.getItem("totalEmployees")) || 0;
 
+// Function to add a new employee
 function addNewEmployee(event) {
     event.preventDefault();
     let name = document.getElementById('name').value;
